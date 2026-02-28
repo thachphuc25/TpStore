@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh toán - PC Parts Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <div class="container" style="padding:2rem 1rem">
+    <div id="checkout-content"></div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function renderCheckout() {
+      var cart = getCart();
+      var content = document.getElementById("checkout-content");
+
+      if (cart.length === 0) {
+        window.location.href = "cart.html";
+        return;
+      }
+
+      var total = getCartTotal();
+      var shippingFee = total >= 500000 ? 0 : 30000;
+      var grandTotal = total + shippingFee;
+
+      // Order items
+      var orderItemsHtml = "";
+      cart.forEach(function(item) {
+        orderItemsHtml +=
+          '<div class="order-item">' +
+            '<img src="' + item.image + '" alt="' + item.name + '">' +
+            '<div style="flex:1;min-width:0">' +
+              '<p class="order-item-name">' + item.name + '</p>' +
+              '<p class="order-item-qty">x' + item.quantity + ' · ' + formatPrice(item.price * item.quantity) + '</p>' +
+            '</div>' +
+          '</div>';
+      });
+
+      content.innerHTML =
+        '<a href="cart.html" class="back-link">← Quay lại giỏ hàng</a>' +
+        '<h1 style="font-size:1.75rem;font-weight:700;margin-bottom:2rem">Thanh toán</h1>' +
+        '<form onsubmit="submitOrder(event)" class="checkout-layout">' +
+          '<div>' +
+            '<div class="form-card">' +
+              '<h3>Thông tin giao hàng</h3>' +
+              '<div class="form-grid">' +
+                '<div class="form-group"><label>Họ và tên *</label><input type="text" required placeholder="Nguyễn Văn A"></div>' +
+                '<div class="form-group"><label>Số điện thoại *</label><input type="tel" required placeholder="0912 345 678"></div>' +
+                '<div class="form-group full-width"><label>Email</label><input type="email" placeholder="email@example.com"></div>' +
+                '<div class="form-group full-width"><label>Địa chỉ giao hàng *</label><input type="text" required placeholder="Số nhà, đường, phường/xã"></div>' +
+                '<div class="form-group"><label>Thành phố *</label><input type="text" required placeholder="TP. Hồ Chí Minh"></div>' +
+                '<div class="form-group"><label>Ghi chú</label><input type="text" placeholder="Ghi chú thêm..."></div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="form-card">' +
+              '<h3>Phương thức thanh toán</h3>' +
+              '<label class="payment-option"><input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng (COD)</label>' +
+              '<label class="payment-option"><input type="radio" name="payment" value="bank"> Chuyển khoản ngân hàng</label>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="cart-summary">' +
+              '<h3>Đơn hàng (' + cart.length + ' sản phẩm)</h3>' +
+              '<div style="max-height:240px;overflow-y:auto">' + orderItemsHtml + '</div>' +
+              '<div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:1rem">' +
+                '<div class="summary-row"><span class="label">Tạm tính</span><span>' + formatPrice(total) + '</span></div>' +
+                '<div class="summary-row"><span class="label">Phí giao hàng</span><span>' + (shippingFee === 0 ? "Miễn phí" : formatPrice(shippingFee)) + '</span></div>' +
+                '<div class="summary-total"><span>Tổng cộng</span><span class="value">' + formatPrice(grandTotal) + '</span></div>' +
+              '</div>' +
+              '<button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:1.5rem">Đặt hàng</button>' +
+            '</div>' +
+          '</div>' +
+        '</form>';
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+      clearCart();
+
+      var orderCode = "EP" + Date.now().toString().slice(-6);
+      document.getElementById("checkout-content").innerHTML =
+        '<div class="checkout-success">' +
+          '<div class="icon">✅</div>' +
+          '<h2>Đặt hàng thành công!</h2>' +
+          '<p>Cảm ơn bạn đã mua hàng. Đơn hàng sẽ được xử lý trong 1-2 ngày làm việc.</p>' +
+          '<p style="font-size:0.875rem;color:var(--muted-fg);margin-top:0.25rem">Mã đơn hàng: #' + orderCode + '</p>' +
+          '<a href="index.html" class="btn btn-primary" style="margin-top:2rem">Về trang chủ</a>' +
+        '</div>';
+
+      updateCartCount();
+    }
+
+    renderCheckout();
+  </script>
+</body>
+</html>

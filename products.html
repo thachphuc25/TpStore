@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản phẩm - PC Parts Shop</title>
+  <meta name="description" content="Danh sách linh kiện PC & Laptop: CPU, GPU, RAM, SSD, Mainboard. Lọc theo danh mục, tìm kiếm và sắp xếp.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <div class="container">
+    <h1 style="font-size:1.75rem;font-weight:700;margin:2rem 0 1.5rem">Sản phẩm</h1>
+
+    <div class="products-layout">
+      <div id="sidebar-products"></div>
+
+      <div class="products-main">
+        <!-- Filter bar -->
+        <div class="filter-bar">
+          <div class="search-input">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Tìm kiếm linh kiện...">
+          </div>
+          <select id="sort-select">
+            <option value="default">Sắp xếp: Mặc định</option>
+            <option value="price-asc">Giá tăng dần</option>
+            <option value="price-desc">Giá giảm dần</option>
+            <option value="rating">Đánh giá cao</option>
+            <option value="name">Tên A-Z</option>
+          </select>
+        </div>
+
+        <!-- Category pills (mobile) -->
+        <div class="category-pills" id="category-pills"></div>
+
+        <p class="result-count" id="result-count"></p>
+
+        <div class="product-grid" id="products-grid"></div>
+        <div class="empty-state" id="empty-state" style="display:none">
+          <p>Không tìm thấy sản phẩm</p>
+          <p>Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    renderCategorySidebar("sidebar-products");
+
+    // Lấy params từ URL
+    var params = new URLSearchParams(window.location.search);
+    var currentCategory = params.get("category") || "all";
+    var currentSearch = params.get("search") || "";
+
+    document.getElementById("search-input").value = currentSearch;
+
+    // Render category pills
+    var pillsHtml = "";
+    categories.forEach(function(cat) {
+      var active = cat.id === currentCategory ? " active" : "";
+      pillsHtml += '<button class="category-pill' + active + '" onclick="filterCategory(\'' + cat.id + '\')">' +
+        cat.icon + ' ' + cat.name + '</button>';
+    });
+    document.getElementById("category-pills").innerHTML = pillsHtml;
+
+    function filterCategory(catId) {
+      var p = new URLSearchParams(window.location.search);
+      if (catId === "all") p.delete("category");
+      else p.set("category", catId);
+      window.location.search = p.toString();
+    }
+
+    function renderProducts() {
+      var search = document.getElementById("search-input").value.toLowerCase().trim();
+      var sortBy = document.getElementById("sort-select").value;
+
+      var result = products;
+
+      if (currentCategory !== "all") {
+        result = result.filter(function(p) { return p.category === currentCategory; });
+      }
+
+      if (search) {
+        result = result.filter(function(p) {
+          return p.name.toLowerCase().indexOf(search) !== -1 ||
+                 p.description.toLowerCase().indexOf(search) !== -1 ||
+                 p.brand.toLowerCase().indexOf(search) !== -1;
+        });
+      }
+
+      switch (sortBy) {
+        case "price-asc": result = result.slice().sort(function(a,b) { return a.price - b.price; }); break;
+        case "price-desc": result = result.slice().sort(function(a,b) { return b.price - a.price; }); break;
+        case "rating": result = result.slice().sort(function(a,b) { return b.rating - a.rating; }); break;
+        case "name": result = result.slice().sort(function(a,b) { return a.name.localeCompare(b.name); }); break;
+      }
+
+      var countText = "Hiển thị " + result.length + " sản phẩm";
+      if (currentCategory !== "all") {
+        countText += ' trong <strong>' + getCategoryName(currentCategory) + '</strong>';
+      }
+      document.getElementById("result-count").innerHTML = countText;
+
+      var grid = document.getElementById("products-grid");
+      var empty = document.getElementById("empty-state");
+
+      if (result.length === 0) {
+        grid.style.display = "none";
+        empty.style.display = "block";
+      } else {
+        grid.style.display = "grid";
+        empty.style.display = "none";
+        grid.innerHTML = result.map(renderProductCard).join("");
+      }
+    }
+
+    // Event listeners
+    document.getElementById("search-input").addEventListener("input", renderProducts);
+    document.getElementById("sort-select").addEventListener("change", renderProducts);
+
+    renderProducts();
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+// ===== DỮ LIỆU DANH MỤC =====
+var categories = [
+  { id: "all", name: "Tất cả", icon: "📦" },
+  { id: "cpu", name: "CPU - Bộ xử lý", icon: "🔲" },
+  { id: "ram", name: "RAM", icon: "🧩" },
+  { id: "ssd", name: "SSD / HDD", icon: "💾" },
+  { id: "mainboard", name: "Mainboard", icon: "🔌" },
+  { id: "gpu", name: "Card đồ họa", icon: "🎮" },
+  { id: "psu", name: "Nguồn (PSU)", icon: "🔋" },
+  { id: "case", name: "Vỏ case", icon: "🖥️" },
+  { id: "monitor", name: "Màn hình", icon: "🖵" },
+  { id: "cooling", name: "Tản nhiệt", icon: "❄️" },
+  { id: "keyboard", name: "Bàn phím", icon: "⌨️" },
+  { id: "mouse", name: "Chuột", icon: "🖱️" },
+  { id: "laptop", name: "Laptop", icon: "💻" },
+];
+
+// ===== DỮ LIỆU SẢN PHẨM =====
+var products = [
+  {
+    id: 1, name: "Intel Core i5-13400F", category: "cpu", price: 4290000, originalPrice: 4890000,
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=400&fit=crop",
+    description: "Bộ vi xử lý Intel Core i5 thế hệ 13, 10 nhân 16 luồng, hiệu năng mạnh mẽ cho gaming và làm việc đa nhiệm.",
+    specs: { "Nhân/Luồng": "10C/16T", "Xung nhịp": "2.5 - 4.6 GHz", "Cache": "20MB L3", "TDP": "65W", "Socket": "LGA 1700", "Tiến trình": "Intel 7" },
+    inStock: true, rating: 4.8, reviewCount: 342, brand: "Intel"
+  },
+  {
+    id: 2, name: "AMD Ryzen 5 5600X", category: "cpu", price: 3490000,
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=400&fit=crop",
+    description: "Bộ vi xử lý AMD Ryzen 5 5600X, 6 nhân 12 luồng, kiến trúc Zen 3, hiệu năng đơn nhân xuất sắc.",
+    specs: { "Nhân/Luồng": "6C/12T", "Xung nhịp": "3.7 - 4.6 GHz", "Cache": "32MB L3", "TDP": "65W", "Socket": "AM4", "Tiến trình": "7nm" },
+    inStock: true, rating: 4.9, reviewCount: 567, brand: "AMD"
+  },
+  {
+    id: 3, name: "Intel Core i7-13700K", category: "cpu", price: 8990000, originalPrice: 9990000,
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=400&fit=crop",
+    description: "CPU Intel Core i7 thế hệ 13, 16 nhân 24 luồng, mở khóa hệ số nhân, lý tưởng cho gaming và sáng tạo nội dung.",
+    specs: { "Nhân/Luồng": "16C/24T", "Xung nhịp": "3.4 - 5.4 GHz", "Cache": "30MB L3", "TDP": "125W", "Socket": "LGA 1700", "Tiến trình": "Intel 7" },
+    inStock: true, rating: 4.7, reviewCount: 289, brand: "Intel"
+  },
+  {
+    id: 4, name: "Kingston Fury Beast 16GB DDR4 3200MHz", category: "ram", price: 850000,
+    image: "https://images.unsplash.com/photo-1562976540-1502c2145186?w=400&h=400&fit=crop",
+    description: "RAM Kingston Fury Beast 16GB DDR4, tốc độ 3200MHz, tản nhiệt nhôm, tương thích XMP 2.0.",
+    specs: { "Dung lượng": "16GB (1x16GB)", "Loại": "DDR4", "Tốc độ": "3200MHz", "Timing": "CL16", "Điện áp": "1.35V", "Tản nhiệt": "Nhôm" },
+    inStock: true, rating: 4.6, reviewCount: 421, brand: "Kingston"
+  },
+  {
+    id: 5, name: "Corsair Vengeance 32GB DDR5 5600MHz", category: "ram", price: 2490000, originalPrice: 2890000,
+    image: "https://images.unsplash.com/photo-1562976540-1502c2145186?w=400&h=400&fit=crop",
+    description: "Bộ nhớ DDR5 Corsair Vengeance cao cấp, kit 2x16GB, hỗ trợ Intel XMP 3.0.",
+    specs: { "Dung lượng": "32GB (2x16GB)", "Loại": "DDR5", "Tốc độ": "5600MHz", "Timing": "CL36", "Điện áp": "1.25V", "RGB": "Không" },
+    inStock: true, rating: 4.7, reviewCount: 198, brand: "Corsair"
+  },
+  {
+    id: 6, name: "Samsung 980 PRO 1TB NVMe", category: "ssd", price: 2390000,
+    image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=400&fit=crop",
+    description: "Ổ cứng SSD Samsung 980 PRO 1TB, chuẩn PCIe 4.0 NVMe, tốc độ đọc lên đến 7000 MB/s.",
+    specs: { "Dung lượng": "1TB", "Giao tiếp": "PCIe 4.0 x4 NVMe", "Đọc": "7,000 MB/s", "Ghi": "5,000 MB/s", "NAND": "V-NAND 3-bit MLC", "TBW": "600TB" },
+    inStock: true, rating: 4.9, reviewCount: 876, brand: "Samsung"
+  },
+  {
+    id: 7, name: "WD Blue SN580 500GB NVMe", category: "ssd", price: 1090000,
+    image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=400&fit=crop",
+    description: "SSD WD Blue SN580 500GB, PCIe Gen 4, giá tốt cho nâng cấp hệ thống.",
+    specs: { "Dung lượng": "500GB", "Giao tiếp": "PCIe 4.0 x4 NVMe", "Đọc": "4,000 MB/s", "Ghi": "3,600 MB/s", "NAND": "TLC", "TBW": "300TB" },
+    inStock: true, rating: 4.5, reviewCount: 234, brand: "Western Digital"
+  },
+  {
+    id: 8, name: "ASUS ROG STRIX B660-A Gaming WiFi", category: "mainboard", price: 4590000,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop",
+    description: "Bo mạch chủ ASUS ROG STRIX B660-A, hỗ trợ Intel thế hệ 12/13, WiFi 6, thiết kế trắng sang trọng.",
+    specs: { "Socket": "LGA 1700", "Chipset": "Intel B660", "RAM": "DDR5, 4 slots, max 128GB", "M.2": "2 khe PCIe 4.0", "WiFi": "WiFi 6", "Form Factor": "ATX" },
+    inStock: true, rating: 4.6, reviewCount: 167, brand: "ASUS"
+  },
+  {
+    id: 9, name: "MSI MAG B550 TOMAHAWK", category: "mainboard", price: 3290000,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop",
+    description: "Bo mạch chủ MSI MAG B550 TOMAHAWK, hỗ trợ AMD Ryzen 5000, VRM mạnh mẽ, 2 khe M.2.",
+    specs: { "Socket": "AM4", "Chipset": "AMD B550", "RAM": "DDR4, 4 slots, max 128GB", "M.2": "2 khe", "USB": "USB 3.2 Gen 2", "Form Factor": "ATX" },
+    inStock: true, rating: 4.7, reviewCount: 312, brand: "MSI"
+  },
+  {
+    id: 10, name: "NVIDIA GeForce RTX 4060 Ti 8GB", category: "gpu", price: 9990000, originalPrice: 11490000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&h=400&fit=crop",
+    description: "Card đồ họa RTX 4060 Ti 8GB, kiến trúc Ada Lovelace, hỗ trợ DLSS 3, Ray Tracing thế hệ mới.",
+    specs: { "GPU": "AD106", "VRAM": "8GB GDDR6", "Xung nhịp": "2310 - 2535 MHz", "CUDA Cores": "4352", "TDP": "160W", "Cổng": "HDMI 2.1, 3x DP 1.4a" },
+    inStock: true, rating: 4.7, reviewCount: 445, brand: "NVIDIA"
+  },
+  {
+    id: 11, name: "AMD Radeon RX 7600 8GB", category: "gpu", price: 6990000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&h=400&fit=crop",
+    description: "Card đồ họa AMD RX 7600, kiến trúc RDNA 3, 8GB GDDR6, lý tưởng cho gaming 1080p.",
+    specs: { "GPU": "Navi 33", "VRAM": "8GB GDDR6", "Xung nhịp": "1720 - 2655 MHz", "Stream Processors": "2048", "TDP": "165W", "Cổng": "HDMI 2.1, 3x DP 2.1" },
+    inStock: true, rating: 4.5, reviewCount: 223, brand: "AMD"
+  },
+  {
+    id: 12, name: "Corsair RM750e 750W 80+ Gold", category: "psu", price: 2190000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&h=400&fit=crop",
+    description: "Nguồn Corsair RM750e 750W, chuẩn 80 Plus Gold, full modular, quạt Zero RPM, bảo hành 7 năm.",
+    specs: { "Công suất": "750W", "Chuẩn": "80 Plus Gold", "Modular": "Full Modular", "Quạt": "135mm FDB", "Bảo hành": "7 năm", "ATX": "ATX 3.0" },
+    inStock: true, rating: 4.8, reviewCount: 389, brand: "Corsair"
+  },
+  {
+    id: 13, name: "NZXT H5 Flow", category: "case", price: 2290000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&h=400&fit=crop",
+    description: "Vỏ case NZXT H5 Flow, thiết kế tối ưu luồng gió, mặt kính cường lực, hỗ trợ ATX.",
+    specs: { "Form Factor": "Mid Tower ATX", "Quạt": "2x 120mm (đi kèm)", "Kính": "Tempered Glass", "Khe mở rộng": "7", "Radiator": "Top 240/280, Front 280/360", "Màu": "Trắng/Đen" },
+    inStock: true, rating: 4.6, reviewCount: 278, brand: "NZXT"
+  },
+  {
+    id: 14, name: "LG 27GP850-B 27\" 165Hz IPS", category: "monitor", price: 7490000, originalPrice: 8990000,
+    image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+    description: "Màn hình gaming LG 27GP850-B, 27 inch QHD, 165Hz, IPS Nano, 1ms, HDR400, G-Sync Compatible.",
+    specs: { "Kích thước": "27 inch", "Độ phân giải": "2560x1440 (QHD)", "Tấm nền": "Nano IPS", "Tần số": "165Hz (OC 180Hz)", "Thời gian phản hồi": "1ms GtG", "HDR": "VESA DisplayHDR 400" },
+    inStock: true, rating: 4.7, reviewCount: 512, brand: "LG"
+  },
+  {
+    id: 15, name: "Noctua NH-D15", category: "cooling", price: 2390000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&h=400&fit=crop",
+    description: "Tản nhiệt khí Noctua NH-D15, dual tower, 2 quạt NF-A15, hiệu năng tương đương tản nước 240mm.",
+    specs: { "Loại": "Air Cooler", "Quạt": "2x NF-A15 140mm", "TDP max": "250W", "Chiều cao": "165mm", "Mức ồn": "24.6 dBA", "Socket": "Intel/AMD đa dạng" },
+    inStock: true, rating: 4.9, reviewCount: 678, brand: "Noctua"
+  },
+  {
+    id: 16, name: "Logitech G Pro X TKL", category: "keyboard", price: 2690000,
+    image: "https://images.unsplash.com/photo-1541140532154-b024d7a29bfa?w=400&h=400&fit=crop",
+    description: "Bàn phím cơ Logitech G Pro X TKL, switch GX có thể thay thế, LIGHTSYNC RGB, thiết kế compact.",
+    specs: { "Switch": "GX Blue/Brown/Red (swappable)", "Layout": "TKL (87 phím)", "Kết nối": "USB-C có dây", "Keycap": "PBT Double-shot", "RGB": "LIGHTSYNC RGB", "Macro": "Hỗ trợ G HUB" },
+    inStock: true, rating: 4.6, reviewCount: 345, brand: "Logitech"
+  },
+  {
+    id: 17, name: "Logitech G502 X PLUS", category: "mouse", price: 3290000,
+    image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop",
+    description: "Chuột gaming Logitech G502 X PLUS, cảm biến HERO 25K, LIGHTFORCE switch, không dây LIGHTSPEED.",
+    specs: { "Cảm biến": "HERO 25K (25,600 DPI)", "Switch": "LIGHTFORCE Hybrid", "Kết nối": "LIGHTSPEED Wireless", "Pin": "~130 giờ", "Trọng lượng": "106g", "Nút": "13 nút lập trình" },
+    inStock: true, rating: 4.8, reviewCount: 456, brand: "Logitech"
+  },
+  {
+    id: 18, name: "Razer DeathAdder V3", category: "mouse", price: 1890000,
+    image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop",
+    description: "Chuột gaming Razer DeathAdder V3, thiết kế ergonomic huyền thoại, cảm biến Focus Pro 30K.",
+    specs: { "Cảm biến": "Focus Pro 30K (30,000 DPI)", "Switch": "Gen-3 Optical", "Kết nối": "USB có dây", "Tốc độ polling": "8000Hz", "Trọng lượng": "59g", "Nút": "5 nút" },
+    inStock: true, rating: 4.7, reviewCount: 287, brand: "Razer"
+  },
+  {
+    id: 19, name: "ASUS TUF Gaming F15 2023", category: "laptop", price: 22990000, originalPrice: 25990000,
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop",
+    description: "Laptop gaming ASUS TUF F15, i5-13500H, RTX 4050, 16GB RAM, 512GB SSD, 15.6\" FHD 144Hz.",
+    specs: { "CPU": "Intel i5-13500H", "GPU": "RTX 4050 6GB", "RAM": "16GB DDR5", "SSD": "512GB PCIe 4.0", "Màn hình": "15.6\" FHD IPS 144Hz", "Pin": "90Wh" },
+    inStock: true, rating: 4.5, reviewCount: 198, brand: "ASUS"
+  },
+  {
+    id: 20, name: "Lenovo IdeaPad Slim 5 14\"", category: "laptop", price: 15990000,
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop",
+    description: "Laptop văn phòng Lenovo IdeaPad Slim 5, Ryzen 5 7530U, 16GB RAM, 512GB SSD, màn 2.2K IPS.",
+    specs: { "CPU": "AMD Ryzen 5 7530U", "GPU": "AMD Radeon Graphics", "RAM": "16GB DDR4", "SSD": "512GB NVMe", "Màn hình": "14\" 2.2K IPS 60Hz", "Pin": "56.5Wh" },
+    inStock: true, rating: 4.6, reviewCount: 156, brand: "Lenovo"
+  },
+  {
+    id: 21, name: "AMD Ryzen 7 5800X3D", category: "cpu", price: 7290000,
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&h=400&fit=crop",
+    description: "CPU AMD Ryzen 7 5800X3D, 8 nhân 16 luồng, 3D V-Cache 96MB, CPU gaming tốt nhất socket AM4.",
+    specs: { "Nhân/Luồng": "8C/16T", "Xung nhịp": "3.4 - 4.5 GHz", "Cache": "96MB L3 (3D V-Cache)", "TDP": "105W", "Socket": "AM4", "Tiến trình": "7nm" },
+    inStock: false, rating: 4.9, reviewCount: 890, brand: "AMD"
+  },
+  {
+    id: 22, name: "Gigabyte G34WQC A 34\" Ultrawide", category: "monitor", price: 8490000,
+    image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+    description: "Màn hình ultrawide Gigabyte G34WQC A, 34\" WQHD 3440x1440, VA 144Hz, 1ms, HDR400.",
+    specs: { "Kích thước": "34 inch", "Độ phân giải": "3440x1440 (UWQHD)", "Tấm nền": "VA", "Tần số": "144Hz", "Thời gian phản hồi": "1ms MPRT", "Cong": "1500R" },
+    inStock: true, rating: 4.5, reviewCount: 234, brand: "Gigabyte"
+  },
+  {
+    id: 23, name: "Seagate Barracuda 2TB HDD", category: "ssd", price: 1290000,
+    image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&h=400&fit=crop",
+    description: "Ổ cứng HDD Seagate Barracuda 2TB, 7200RPM, cache 256MB, lý tưởng lưu trữ game và dữ liệu.",
+    specs: { "Dung lượng": "2TB", "Giao tiếp": "SATA III 6Gb/s", "Tốc độ quay": "7200 RPM", "Cache": "256MB", "Form Factor": "3.5 inch" },
+    inStock: true, rating: 4.4, reviewCount: 567, brand: "Seagate"
+  },
+  {
+    id: 24, name: "Corsair iCUE H150i Elite LCD XT", category: "cooling", price: 5990000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&h=400&fit=crop",
+    description: "Tản nhiệt nước AIO Corsair H150i Elite LCD XT, radiator 360mm, màn LCD IPS 2.1\", RGB.",
+    specs: { "Loại": "AIO Liquid Cooler", "Radiator": "360mm", "Quạt": "3x AF120 RGB ELITE", "Màn hình": "LCD IPS 2.1\"", "Socket": "Intel LGA 1700/1200, AMD AM5/AM4", "Bảo hành": "5 năm" },
+    inStock: true, rating: 4.8, reviewCount: 167, brand: "Corsair"
+  }
+];
+
+// ===== HELPER FUNCTIONS =====
+function formatPrice(price) {
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+}
+
+function getProductById(id) {
+  return products.find(function(p) { return p.id === parseInt(id); });
+}
+
+function getProductsByCategory(categoryId) {
+  if (categoryId === "all") return products;
+  return products.filter(function(p) { return p.category === categoryId; });
+}
+
+function getCategoryName(categoryId) {
+  var cat = categories.find(function(c) { return c.id === categoryId; });
+  return cat ? cat.name : "";
+}

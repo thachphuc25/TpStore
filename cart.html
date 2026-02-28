@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng - PC Parts Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <div class="container" style="padding:2rem 1rem">
+    <div id="cart-content"></div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function renderCartPage() {
+      var cart = getCart();
+      var content = document.getElementById("cart-content");
+
+      if (cart.length === 0) {
+        content.innerHTML =
+          '<div class="cart-empty">' +
+            '<div class="icon">🛒</div>' +
+            '<h2>Giỏ hàng trống</h2>' +
+            '<p>Hãy khám phá và thêm sản phẩm vào giỏ hàng!</p>' +
+            '<a href="products.html" class="btn btn-primary" style="margin-top:1.5rem">Tiếp tục mua hàng</a>' +
+          '</div>';
+        return;
+      }
+
+      var total = getCartTotal();
+      var shippingFee = total >= 500000 ? 0 : 30000;
+      var grandTotal = total + shippingFee;
+
+      var itemsHtml = "";
+      cart.forEach(function(item) {
+        itemsHtml +=
+          '<div class="cart-item">' +
+            '<a href="product-detail.html?id=' + item.id + '">' +
+              '<img src="' + item.image + '" alt="' + item.name + '">' +
+            '</a>' +
+            '<div class="cart-item-info">' +
+              '<a href="product-detail.html?id=' + item.id + '" class="cart-item-name">' + item.name + '</a>' +
+              '<p class="cart-item-brand">' + item.brand + '</p>' +
+              '<p class="cart-item-price">' + formatPrice(item.price) + '</p>' +
+              '<div class="cart-item-actions">' +
+                '<div class="quantity-selector">' +
+                  '<button onclick="updateQty(' + item.id + ',' + (item.quantity - 1) + ')">−</button>' +
+                  '<span>' + item.quantity + '</span>' +
+                  '<button onclick="updateQty(' + item.id + ',' + (item.quantity + 1) + ')">+</button>' +
+                '</div>' +
+                '<button class="btn btn-icon btn-ghost" style="color:var(--destructive)" onclick="removeItem(' + item.id + ')">🗑️</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      });
+
+      content.innerHTML =
+        '<a href="products.html" class="back-link">← Tiếp tục mua</a>' +
+        '<h1 style="font-size:1.75rem;font-weight:700;margin-bottom:2rem">Giỏ hàng (' + cart.length + ' sản phẩm)</h1>' +
+        '<div class="cart-layout">' +
+          '<div>' +
+            itemsHtml +
+            '<button class="btn btn-destructive btn-sm" style="margin-top:1rem" onclick="clearAllCart()">Xóa tất cả</button>' +
+          '</div>' +
+          '<div class="cart-summary">' +
+            '<h3>Tóm tắt đơn hàng</h3>' +
+            '<div class="summary-row"><span class="label">Tạm tính</span><span>' + formatPrice(total) + '</span></div>' +
+            '<div class="summary-row"><span class="label">Phí giao hàng</span><span>' + (shippingFee === 0 ? "Miễn phí" : formatPrice(shippingFee)) + '</span></div>' +
+            '<div class="summary-total"><span>Tổng cộng</span><span class="value">' + formatPrice(grandTotal) + '</span></div>' +
+            '<a href="checkout.html" class="btn btn-primary btn-lg" style="width:100%;margin-top:1.5rem">Tiến hành thanh toán</a>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function updateQty(id, qty) {
+      updateCartQuantity(id, qty);
+      renderCartPage();
+    }
+
+    function removeItem(id) {
+      removeFromCart(id);
+      renderCartPage();
+    }
+
+    function clearAllCart() {
+      clearCart();
+      renderCartPage();
+    }
+
+    renderCartPage();
+  </script>
+</body>
+</html>

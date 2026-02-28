@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết sản phẩm - PC Parts Shop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <div class="container" style="padding:2rem 1rem">
+    <a href="products.html" class="back-link">← Quay lại</a>
+
+    <div id="product-content"></div>
+
+    <section class="related-section" id="related-section"></section>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var productId = parseInt(params.get("id"));
+    var product = getProductById(productId);
+
+    if (!product) {
+      document.getElementById("product-content").innerHTML =
+        '<div style="text-align:center;padding:5rem 0">' +
+          '<h2>Không tìm thấy sản phẩm</h2>' +
+          '<a href="products.html" class="text-primary" style="margin-top:1rem;display:inline-block">← Quay lại cửa hàng</a>' +
+        '</div>';
+    } else {
+      document.title = product.name + " - PC Parts Shop";
+
+      // Stars
+      var starsHtml = "";
+      for (var i = 0; i < 5; i++) {
+        starsHtml += '<span class="' + (i < Math.floor(product.rating) ? 'filled' : '') + '">★</span>';
+      }
+
+      // Original price
+      var origPriceHtml = "";
+      if (product.originalPrice) {
+        origPriceHtml = '<span class="original">' + formatPrice(product.originalPrice) + '</span>';
+      }
+
+      // Stock
+      var stockHtml = product.inStock
+        ? '<div class="stock-status in-stock">✅ Còn hàng</div>'
+        : '<div class="stock-status out-of-stock">❌ Hết hàng</div>';
+
+      // Specs
+      var specsHtml = "";
+      var keys = Object.keys(product.specs);
+      keys.forEach(function(key, idx) {
+        specsHtml += '<div class="specs-row' + (idx % 2 === 0 ? '' : '') + '">' +
+          '<span class="spec-label">' + key + '</span>' +
+          '<span class="spec-value">' + product.specs[key] + '</span>' +
+        '</div>';
+      });
+
+      document.getElementById("product-content").innerHTML =
+        '<div class="product-detail">' +
+          '<div class="product-detail-img"><img src="' + product.image + '" alt="' + product.name + '"></div>' +
+          '<div>' +
+            '<p class="product-detail-brand">' + product.brand + '</p>' +
+            '<h1 class="product-detail-name">' + product.name + '</h1>' +
+            '<div class="product-detail-rating">' +
+              '<div class="stars">' + starsHtml + '</div>' +
+              '<span>' + product.rating + ' (' + product.reviewCount + ' đánh giá)</span>' +
+            '</div>' +
+            '<div class="product-detail-price">' +
+              '<span class="current">' + formatPrice(product.price) + '</span>' +
+              origPriceHtml +
+            '</div>' +
+            stockHtml +
+            '<p class="product-detail-desc">' + product.description + '</p>' +
+            '<div class="quantity-cart">' +
+              '<div class="quantity-selector">' +
+                '<button onclick="changeQty(-1)">−</button>' +
+                '<span id="qty-display">1</span>' +
+                '<button onclick="changeQty(1)">+</button>' +
+              '</div>' +
+              '<button class="btn btn-primary" style="flex:1" onclick="addToCartDetail()" ' +
+                (product.inStock ? '' : 'disabled') + '>' +
+                '🛒 Thêm vào giỏ hàng' +
+              '</button>' +
+            '</div>' +
+            '<div class="specs-table">' +
+              '<h3>Thông số kỹ thuật</h3>' +
+              '<div class="specs-list">' + specsHtml + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      // Related products
+      var related = products.filter(function(p) {
+        return p.category === product.category && p.id !== product.id;
+      }).slice(0, 4);
+
+      if (related.length > 0) {
+        document.getElementById("related-section").innerHTML =
+          '<h2>Sản phẩm liên quan</h2>' +
+          '<div class="product-grid">' + related.map(renderProductCard).join("") + '</div>';
+      }
+    }
+
+    // Quantity logic
+    var quantity = 1;
+
+    function changeQty(delta) {
+      quantity = Math.max(1, quantity + delta);
+      document.getElementById("qty-display").textContent = quantity;
+    }
+
+    function addToCartDetail() {
+      if (product) {
+        addToCart(product.id, quantity);
+      }
+    }
+  </script>
+</body>
+</html>

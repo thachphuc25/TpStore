@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TPstore.- Linh kiện PC & Laptop chính hãng</title>
+    <meta
+      name="description"
+      content="Cung cấp linh kiện PC & Laptop chính hãng: CPU, GPU, RAM, SSD, Mainboard. Giá tốt nhất, bảo hành uy tín."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <!-- Hero + Sidebar -->
+    <section class="container" style="padding: 1.5rem 1rem">
+      <div class="hero-layout">
+        <div id="sidebar-home"></div>
+
+        <div class="hero-banner">
+          <span class="badge">🔥 Khuyến mãi cuối năm</span>
+          <h1>
+            Linh kiện <span class="text-primary">PC & Laptop</span> chính hãng
+          </h1>
+          <p>
+            CPU, GPU, RAM, SSD, Mainboard và hàng nghìn linh kiện khác. Giá tốt
+            nhất, bảo hành uy tín.
+          </p>
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-primary btn-lg"
+              >Mua ngay →</a
+            >
+            <a href="contact.html" class="btn btn-outline btn-lg"
+              >Tư vấn build PC</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-bar">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🚚</div>
+            <div>
+              <p>Giao hàng nhanh</p>
+              <span>Miễn phí đơn từ 2 triệu</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <div>
+              <p>Chính hãng 100%</p>
+              <span>Bảo hành toàn quốc</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎧</div>
+            <div>
+              <p>Hỗ trợ 24/7</p>
+              <span>Tư vấn build PC miễn phí</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div>
+              <p>Thanh toán dễ dàng</p>
+              <span>COD, chuyển khoản, trả góp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container" style="padding: 2rem 1rem">
+      <div class="section-header">
+        <h2>Sản phẩm nổi bật</h2>
+        <a href="products.html">Xem tất cả →</a>
+      </div>
+      <div class="product-grid" id="featured-products"></div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="js/products-data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      // Render sidebar
+      renderCategorySidebar("sidebar-home");
+
+      // Render featured products (có giảm giá hoặc rating >= 4.7)
+      var featured = products
+        .filter(function (p) {
+          return p.originalPrice || p.rating >= 4.7;
+        })
+        .slice(0, 8);
+
+      var grid = document.getElementById("featured-products");
+      grid.innerHTML = featured.map(renderProductCard).join("");
+    </script>
+  </body>
+</html>
