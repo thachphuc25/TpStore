@@ -1,3 +1,20 @@
+// ===== BOOTSTRAP ICONS =====
+function ensureBootstrapIcons() {
+  if (
+    document.querySelector('link[data-bootstrap-icons="true"]') ||
+    document.querySelector('link[href*="bootstrap-icons"]')
+  ) {
+    return;
+  }
+
+  var link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href =
+    "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css";
+  link.setAttribute("data-bootstrap-icons", "true");
+  document.head.appendChild(link);
+}
+
 // ===== RENDER HEADER =====
 function renderHeader() {
   var headerEl = document.getElementById("header");
@@ -12,12 +29,12 @@ function renderHeader() {
     "<span>TpStore<code style='color:red'>.</code></span>" +
     "</a>" +
     '<form class="header-search" onsubmit="handleHeaderSearch(event)">' +
-    '<span class="search-icon">🔍</span>' +
+    '<span class="search-icon"><i class="bi bi-search"></i></span>' +
     '<input type="text" id="header-search-input" placeholder="Tìm CPU, RAM, SSD, Card đồ họa...">' +
     "</form>" +
     '<div style="display:flex;align-items:center;gap:0.5rem">' +
-    '<a href="cart.html" class="cart-btn">🛒<span class="cart-count">0</span></a>' +
-    '<button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>' +
+    '<a href="cart.html" class="cart-btn"><i class="bi bi-cart3"></i><span class="cart-count">0</span></a>' +
+    '<button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="bi bi-list"></i></button>' +
     "</div>" +
     "</div>" +
     '<nav class="header-nav">' +
@@ -88,9 +105,9 @@ function renderFooter() {
     '<div class="footer-col">' +
     "<h4>Liên hệ</h4>" +
     '<ul class="footer-contact">' +
-    "<li>📞 0123 456 789</li>" +
-    "<li>📧 info@tpstore.vn</li>" +
-    "<li>📍 TP. Hồ Chí Minh, Việt Nam</li>" +
+    '<li><i class="bi bi-telephone-fill"></i> 0123 456 789</li>' +
+    '<li><i class="bi bi-envelope-fill"></i> info@tpstore.vn</li>' +
+    '<li><i class="bi bi-geo-alt-fill"></i> TP. Hồ Chí Minh, Việt Nam</li>' +
     "</ul>" +
     "</div>" +
     "</div>" +
@@ -142,7 +159,7 @@ function renderProductCard(product) {
     product.name +
     "</h3>" +
     '<div class="product-card-rating">' +
-    '<span class="star">★</span> ' +
+    '<span class="star"><i class="bi bi-star-fill"></i></span> ' +
     "<span>" +
     product.rating +
     " (" +
@@ -160,7 +177,7 @@ function renderProductCard(product) {
     product.id +
     ')" ' +
     (product.inStock ? "" : "disabled") +
-    ">🛒</button>" +
+    '><i class="bi bi-cart-plus"></i></button>' +
     "</div>" +
     "</div>" +
     "</a>"
@@ -174,7 +191,7 @@ function renderCategorySidebar(containerId) {
 
   var html =
     '<nav class="category-sidebar">' +
-    '<div class="sidebar-title">📂 Danh mục sản phẩm</div><ul>';
+    '<div class="sidebar-title"><i class="bi bi-grid"></i> Danh mục sản phẩm</div><ul>';
 
   categories
     .filter(function (c) {
@@ -198,6 +215,7 @@ function renderCategorySidebar(containerId) {
 
 // ===== INIT =====
 document.addEventListener("DOMContentLoaded", function () {
+  ensureBootstrapIcons();
   renderHeader();
   renderFooter();
 });

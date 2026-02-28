@@ -1,18 +1,18 @@
 // ===== DỮ LIỆU DANH MỤC =====
 var categories = [
-  { id: "all", name: "Tất cả", icon: "📦" },
-  { id: "cpu", name: "CPU - Bộ xử lý", icon: "🔲" },
-  { id: "ram", name: "RAM", icon: "🧩" },
-  { id: "ssd", name: "SSD / HDD", icon: "💾" },
-  { id: "mainboard", name: "Mainboard", icon: "🔌" },
-  { id: "gpu", name: "Card đồ họa", icon: "🎮" },
-  { id: "psu", name: "Nguồn (PSU)", icon: "🔋" },
-  { id: "case", name: "Vỏ case", icon: "🖥️" },
-  { id: "monitor", name: "Màn hình", icon: "🖵" },
-  { id: "cooling", name: "Tản nhiệt", icon: "❄️" },
-  { id: "keyboard", name: "Bàn phím", icon: "⌨️" },
-  { id: "mouse", name: "Chuột", icon: "🖱️" },
-  { id: "laptop", name: "Laptop", icon: "💻" },
+  { id: "all", name: "Tất cả", icon: '<i class="bi bi-grid-3x3-gap-fill"></i>' },
+  { id: "cpu", name: "CPU - Bộ xử lý", icon: '<i class="bi bi-cpu-fill"></i>' },
+  { id: "ram", name: "RAM", icon: '<i class="bi bi-memory"></i>' },
+  { id: "ssd", name: "SSD / HDD", icon: '<i class="bi bi-device-hdd-fill"></i>' },
+  { id: "mainboard", name: "Mainboard", icon: '<i class="bi bi-motherboard-fill"></i>' },
+  { id: "gpu", name: "Card đồ họa", icon: '<i class="bi bi-gpu-card"></i>' },
+  { id: "psu", name: "Nguồn (PSU)", icon: '<i class="bi bi-battery-charging"></i>' },
+  { id: "case", name: "Vỏ case", icon: '<i class="bi bi-pc-display"></i>' },
+  { id: "monitor", name: "Màn hình", icon: '<i class="bi bi-display"></i>' },
+  { id: "cooling", name: "Tản nhiệt", icon: '<i class="bi bi-fan"></i>' },
+  { id: "keyboard", name: "Bàn phím", icon: '<i class="bi bi-keyboard-fill"></i>' },
+  { id: "mouse", name: "Chuột", icon: '<i class="bi bi-mouse-fill"></i>' },
+  { id: "laptop", name: "Laptop", icon: '<i class="bi bi-laptop-fill"></i>' },
 ];
 
 // ===== DỮ LIỆU SẢN PHẨM =====
