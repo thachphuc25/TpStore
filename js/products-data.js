@@ -43,7 +43,7 @@ var products = [
     category: "cpu",
     price: 4290000,
     originalPrice: 4890000,
-    image: "/img/CPU/Intel-core-i5-13400F.jpg",
+    image: "img/CPU/Intel-core-i5-13400F.jpg",
     description:
       "Bộ vi xử lý Intel Core i5 thế hệ 13, 10 nhân 16 luồng, hiệu năng mạnh mẽ cho gaming và làm việc đa nhiệm.",
     specs: {
@@ -64,7 +64,7 @@ var products = [
     name: "AMD Ryzen 5 5600X",
     category: "cpu",
     price: 3490000,
-    image: "/img/CPU/AMD-Ryzen-5-5600X.jpg",
+    image: "img/CPU/AMD-Ryzen-5-5600X.jpg",
     description:
       "Bộ vi xử lý AMD Ryzen 5 5600X, 6 nhân 12 luồng, kiến trúc Zen 3, hiệu năng đơn nhân xuất sắc.",
     specs: {
@@ -86,7 +86,7 @@ var products = [
     category: "cpu",
     price: 8990000,
     originalPrice: 9990000,
-    image: "/img/CPU/Intel-Core-i7-13700K.jpg",
+    image: "img/CPU/Intel-Core-i7-13700K.jpg",
     description:
       "CPU Intel Core i7 thế hệ 13, 16 nhân 24 luồng, mở khóa hệ số nhân, lý tưởng cho gaming và sáng tạo nội dung.",
     specs: {
@@ -107,7 +107,7 @@ var products = [
     name: "Kingston Fury Beast 16GB DDR4 3200MHz",
     category: "ram",
     price: 850000,
-    image: "/img/RAM/Kingston-Fury-Beast-16GB-DDR4-3200MHz.jpg",
+    image: "img/RAM/Kingston-Fury-Beast-16GB-DDR4-3200MHz.jpg",
     description:
       "RAM Kingston Fury Beast 16GB DDR4, tốc độ 3200MHz, tản nhiệt nhôm, tương thích XMP 2.0.",
     specs: {
@@ -129,7 +129,7 @@ var products = [
     category: "ram",
     price: 2490000,
     originalPrice: 2890000,
-    image: "/img/RAM/Corsair-Vengeance-32GB-DDR5-5600MHz.jpg",
+    image: "img/RAM/Corsair-Vengeance-32GB-DDR5-5600MHz.jpg",
     description:
       "Bộ nhớ DDR5 Corsair Vengeance cao cấp, kit 2x16GB, hỗ trợ Intel XMP 3.0.",
     specs: {
@@ -150,7 +150,7 @@ var products = [
     name: "Samsung 980 PRO 1TB NVMe",
     category: "ssd",
     price: 2390000,
-    image: "/img/SSD/Samsung-980-PRO-1TB-NVMe.jpg",
+    image: "img/SSD/Samsung-980-PRO-1TB-NVMe.jpg",
     description:
       "Ổ cứng SSD Samsung 980 PRO 1TB, chuẩn PCIe 4.0 NVMe, tốc độ đọc lên đến 7000 MB/s.",
     specs: {
@@ -171,7 +171,7 @@ var products = [
     name: "WD Blue SN580 500GB NVMe",
     category: "ssd",
     price: 1090000,
-    image: "/img/SSD/WD-Blue-SN580-500GB-NVMe.jpg",
+    image: "img/SSD/WD-Blue-SN580-500GB-NVMe.jpg",
     description:
       "SSD WD Blue SN580 500GB, PCIe Gen 4, giá tốt cho nâng cấp hệ thống.",
     specs: {
@@ -192,7 +192,7 @@ var products = [
     name: "ASUS ROG STRIX B660-A Gaming WiFi",
     category: "mainboard",
     price: 4590000,
-    image: "/img/Mainboard/ASUS-ROG-STRIX-B660-A-Gaming-WiFi.jpg",
+    image: "img/Mainboard/ASUS-ROG-STRIX-B660-A-Gaming-WiFi.jpg",
     description:
       "Bo mạch chủ ASUS ROG STRIX B660-A, hỗ trợ Intel thế hệ 12/13, WiFi 6, thiết kế trắng sang trọng.",
     specs: {
@@ -213,7 +213,7 @@ var products = [
     name: "MSI MAG B550 TOMAHAWK",
     category: "mainboard",
     price: 3290000,
-    image: "/img/Mainboard/MSI-MAG-B550-TOMAHAWK.jpg",
+    image: "img/Mainboard/MSI-MAG-B550-TOMAHAWK.jpg",
     description:
       "Bo mạch chủ MSI MAG B550 TOMAHAWK, hỗ trợ AMD Ryzen 5000, VRM mạnh mẽ, 2 khe M.2.",
     specs: {
@@ -235,7 +235,7 @@ var products = [
     category: "gpu",
     price: 9990000,
     originalPrice: 11490000,
-    image: "/img/GPU/NVIDIA-GeForce-RTX-4060-Ti-8GB.jpg",
+    image: "img/GPU/NVIDIA-GeForce-RTX-4060-Ti-8GB.jpg",
     description:
       "Card đồ họa RTX 4060 Ti 8GB, kiến trúc Ada Lovelace, hỗ trợ DLSS 3, Ray Tracing thế hệ mới.",
     specs: {
@@ -256,7 +256,7 @@ var products = [
     name: "AMD Radeon RX 7600 8GB",
     category: "gpu",
     price: 6990000,
-    image: "/img/GPU/AMD-Radeon-RX-7600-8GB.jpg",
+    image: "img/GPU/AMD-Radeon-RX-7600-8GB.jpg",
     description:
       "Card đồ họa AMD RX 7600, kiến trúc RDNA 3, 8GB GDDR6, lý tưởng cho gaming 1080p.",
     specs: {
@@ -277,7 +277,7 @@ var products = [
     name: "Corsair RM750e 750W 80+ Gold",
     category: "psu",
     price: 2190000,
-    image: "/img/PSU/Corsair-RM750e-750W-80-Gold.jpg",
+    image: "img/PSU/Corsair-RM750e-750W-80-Gold.jpg",
     description:
       "Nguồn Corsair RM750e 750W, chuẩn 80 Plus Gold, full modular, quạt Zero RPM, bảo hành 7 năm.",
     specs: {
@@ -298,7 +298,7 @@ var products = [
     name: "NZXT H5 Flow",
     category: "case",
     price: 2290000,
-    image: "/img/Case/NZXT-H5-Flow.jpg",
+    image: "img/Case/NZXT-H5-Flow.jpg",
     description:
       "Vỏ case NZXT H5 Flow, thiết kế tối ưu luồng gió, mặt kính cường lực, hỗ trợ ATX.",
     specs: {
@@ -320,7 +320,7 @@ var products = [
     category: "monitor",
     price: 7490000,
     originalPrice: 8990000,
-    image: "/img/Monitor/LG-27GP850-B-27-165Hz-IPS.jpg",
+    image: "img/Monitor/LG-27GP850-B-27-165Hz-IPS.jpg",
     description:
       "Màn hình gaming LG 27GP850-B, 27 inch QHD, 165Hz, IPS Nano, 1ms, HDR400, G-Sync Compatible.",
     specs: {
@@ -341,7 +341,7 @@ var products = [
     name: "Noctua NH-D15",
     category: "cooling",
     price: 2390000,
-    image: "/img/Cooling/Noctua-NH-D15.jpg",
+    image: "img/Cooling/Noctua-NH-D15.jpg",
     description:
       "Tản nhiệt khí Noctua NH-D15, dual tower, 2 quạt NF-A15, hiệu năng tương đương tản nước 240mm.",
     specs: {
@@ -362,7 +362,7 @@ var products = [
     name: "Logitech G Pro X TKL",
     category: "keyboard",
     price: 2690000,
-    image: "/img/Keyboard/Logitech-G-Pro-X-TKL.jpg",
+    image: "img/Keyboard/Logitech-G-Pro-X-TKL.jpg",
     description:
       "Bàn phím cơ Logitech G Pro X TKL, switch GX có thể thay thế, LIGHTSYNC RGB, thiết kế compact.",
     specs: {
@@ -383,7 +383,7 @@ var products = [
     name: "Logitech G502 X PLUS",
     category: "mouse",
     price: 3290000,
-    image: "/img/Mouse/Logitech-G502-X-PLUS.jpg",
+    image: "img/Mouse/Logitech-G502-X-PLUS.jpg",
     description:
       "Chuột gaming Logitech G502 X PLUS, cảm biến HERO 25K, LIGHTFORCE switch, không dây LIGHTSPEED.",
     specs: {
@@ -404,7 +404,7 @@ var products = [
     name: "Razer DeathAdder V3",
     category: "mouse",
     price: 1890000,
-    image: "/img/Mouse/Razer-DeathAdder-V3.jpg",
+    image: "img/Mouse/Razer-DeathAdder-V3.jpg",
     description:
       "Chuột gaming Razer DeathAdder V3, thiết kế ergonomic huyền thoại, cảm biến Focus Pro 30K.",
     specs: {
@@ -426,7 +426,7 @@ var products = [
     category: "laptop",
     price: 22990000,
     originalPrice: 25990000,
-    image: "/img/LapTop/ASUS-TUF-Gaming-F15-2023.jpg",
+    image: "img/LapTop/ASUS-TUF-Gaming-F15-2023.jpg",
     description:
       'Laptop gaming ASUS TUF F15, i5-13500H, RTX 4050, 16GB RAM, 512GB SSD, 15.6" FHD 144Hz.',
     specs: {
@@ -447,7 +447,7 @@ var products = [
     name: "Lenovo IdeaPad Slim 5 14",
     category: "laptop",
     price: 15990000,
-    image: "/img/LapTop/Lenovo-IdeaPad-Slim-5-14.jpg",
+    image: "img/LapTop/Lenovo-IdeaPad-Slim-5-14.jpg",
     description:
       "Laptop văn phòng Lenovo IdeaPad Slim 5, Ryzen 5 7530U, 16GB RAM, 512GB SSD, màn 2.2K IPS.",
     specs: {
@@ -468,7 +468,7 @@ var products = [
     name: "AMD Ryzen 7 5800X3D",
     category: "cpu",
     price: 7290000,
-    image: "/img/CPU/AMD-Ryzen-7-5800X3D.jpg",
+    image: "img/CPU/AMD-Ryzen-7-5800X3D.jpg",
     description:
       "CPU AMD Ryzen 7 5800X3D, 8 nhân 16 luồng, 3D V-Cache 96MB, CPU gaming tốt nhất socket AM4.",
     specs: {
@@ -489,7 +489,7 @@ var products = [
     name: 'Gigabyte G34WQC A 34" Ultrawide',
     category: "monitor",
     price: 8490000,
-    image: "/img/Monitor/Gigabyte-G34WQC-A-34-Ultrawide.jpg",
+    image: "img/Monitor/Gigabyte-G34WQC-A-34-Ultrawide.jpg",
     description:
       'Màn hình ultrawide Gigabyte G34WQC A, 34" WQHD 3440x1440, VA 144Hz, 1ms, HDR400.',
     specs: {
@@ -510,7 +510,7 @@ var products = [
     name: "Seagate Barracuda 2TB HDD",
     category: "ssd",
     price: 1290000,
-    image: "/img/SSD/Seagate-Barracuda-2TB-HDD.jpg",
+    image: "img/SSD/Seagate-Barracuda-2TB-HDD.jpg",
     description:
       "Ổ cứng HDD Seagate Barracuda 2TB, 7200RPM, cache 256MB, lý tưởng lưu trữ game và dữ liệu.",
     specs: {
@@ -530,7 +530,7 @@ var products = [
     name: "Corsair iCUE H150i Elite LCD XT",
     category: "cooling",
     price: 5990000,
-    image: "/img/Cooling/Corsair-iCUE-H150i-Elite-LCD-XT.jpg",
+    image: "img/Cooling/Corsair-iCUE-H150i-Elite-LCD-XT.jpg",
     description:
       'Tản nhiệt nước AIO Corsair H150i Elite LCD XT, radiator 360mm, màn LCD IPS 2.1", RGB.',
     specs: {
