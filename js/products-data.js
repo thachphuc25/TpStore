@@ -43,7 +43,7 @@ var products = [
     category: "cpu",
     price: 4290000,
     originalPrice: 4890000,
-    image: "./img/CPU/Intel-core-i5-13400F.jpg",
+    image: "/img/CPU/Intel-core-i5-13400F.jpg",
     description:
       "Bộ vi xử lý Intel Core i5 thế hệ 13, 10 nhân 16 luồng, hiệu năng mạnh mẽ cho gaming và làm việc đa nhiệm.",
     specs: {
@@ -468,7 +468,7 @@ var products = [
     name: "AMD Ryzen 7 5800X3D",
     category: "cpu",
     price: 7290000,
-    image: "./img/CPU/AMD-Ryzen-7-5800X3D.jpg",
+    image: "/img/CPU/AMD-Ryzen-7-5800X3D.jpg",
     description:
       "CPU AMD Ryzen 7 5800X3D, 8 nhân 16 luồng, 3D V-Cache 96MB, CPU gaming tốt nhất socket AM4.",
     specs: {
